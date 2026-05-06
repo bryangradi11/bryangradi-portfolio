@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://bryangradi.com/sitemap.xml",
-    host: "https://bryangradi.com",
+    sitemap: "https://bryangradi-portfolio.vercel.app/sitemap.xml",
+    host: "https://bryangradi-portfolio.vercel.app",
   };
 }

@@ -5,7 +5,7 @@
   "description": "Personal portfolio of Bryan Gradi - Founder @ Gradios",
   "author": "Bryan Gradi <bryangradi@gmail.com>",
   "license": "MIT",
-  "homepage": "https://bryangradi.com",
+  "homepage": "https://bryangradi-portfolio.vercel.app",
   "repository": {
     "type": "git",
     "url": "https://github.com/bryangradi11/bryangradi-portfolio"

@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
   weight: ["400", "500"],
 });
 
-const SITE_URL = "https://bryangradi.com";
+const SITE_URL = "https://bryangradi-portfolio.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

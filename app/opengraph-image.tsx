@@ -100,7 +100,7 @@ export default function OpenGraphImage() {
             textTransform: "uppercase",
           }}
         >
-          <span>bryangradi.com</span>
+          <span>bryangradi-portfolio.vercel.app</span>
           <span>Londrina, Brazil</span>
         </div>
       </div>
