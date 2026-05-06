@@ -88,6 +88,16 @@ export const personalData = {
 
   projects: [
     {
+      name: "Snake",
+      description:
+        "Modern Snake game built with Canvas API and TypeScript. Live in this portfolio. Try the secret terminal command 'snake'.",
+      tags: ["TypeScript", "Canvas API", "Game Dev", "Next.js"],
+      url: "/snake",
+      internal: true,
+      featured: true,
+      status: "live" as const,
+    },
+    {
       name: "Gradios",
       description:
         "B2B tech startup. Custom software, automation, AI agents for businesses in Brazil.",
@@ -119,4 +129,4 @@ export const personalData = {
 
 export type PersonalData = typeof personalData;
 export type Experience = PersonalData["experiences"][number];
-export type Project = PersonalData["projects"][number];
+export type Project = PersonalData["projects"][number] & { internal?: boolean };

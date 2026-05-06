@@ -1,6 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "motion/react";
+import { useRouter } from "next/navigation";
 import {
   useCallback,
   useEffect,
@@ -95,6 +96,7 @@ function buildHelp(): Line[] {
     ["contact", "how to reach me"],
     ["gradios", "about the company"],
     ["matrix", "5 seconds of fun"],
+    ["snake", "play hidden snake game"],
     ["joke", "programmer humor (use at your own risk)"],
     ["clear", "wipe the screen"],
     ["exit", "close the terminal"],
@@ -111,6 +113,7 @@ export default function Terminal() {
   const [matrix, setMatrix] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const bodyRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
 
   const banner = useMemo<Line[]>(
     () => [
@@ -210,6 +213,13 @@ export default function Terminal() {
         result = [out(""), out("Engaging the matrix...", "accent"), out("")];
         setMatrix(true);
         setTimeout(() => setMatrix(false), 5000);
+        break;
+      case "snake":
+        result = [out(""), out("Loading snake.exe...", "accent"), out("")];
+        setTimeout(() => {
+          close();
+          router.push("/snake");
+        }, 800);
         break;
       case "joke": {
         const j = JOKES[Math.floor(Math.random() * JOKES.length)];

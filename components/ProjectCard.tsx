@@ -1,35 +1,35 @@
 "use client";
 
 import { motion } from "motion/react";
+import Link from "next/link";
 import type { Project } from "@/lib/data";
+
+const MotionLink = motion.create(Link);
 
 const statusMeta: Record<Project["status"], { label: string; color: string }> = {
   live: { label: "Live", color: "#22c55e" },
   "in-progress": { label: "In progress", color: "#eab308" },
 };
 
+const sharedClassName =
+  "group relative flex flex-col justify-between gap-8 overflow-hidden rounded-2xl border border-[var(--border)] bg-white/[0.015] p-6 transition-colors duration-300 hover:border-white/15 hover:bg-white/[0.03] hover:shadow-[0_8px_40px_-12px_rgba(59,130,246,0.25)] sm:p-8";
+
+const variants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] },
+  },
+};
+
 export default function ProjectCard({ project }: { project: Project }) {
   const meta = statusMeta[project.status];
+  const isInternal = project.internal === true;
+  const className = `${sharedClassName} ${project.featured ? "md:col-span-2" : ""}`;
 
-  return (
-    <motion.a
-      href={project.url}
-      target="_blank"
-      rel="noopener noreferrer"
-      variants={{
-        hidden: { opacity: 0, y: 24 },
-        visible: {
-          opacity: 1,
-          y: 0,
-          transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
-        },
-      }}
-      whileHover={{ y: -4 }}
-      transition={{ type: "spring", stiffness: 300, damping: 24 }}
-      className={`group relative flex flex-col justify-between gap-8 overflow-hidden rounded-2xl border border-[var(--border)] bg-white/[0.015] p-6 transition-colors duration-300 hover:border-white/15 hover:bg-white/[0.03] hover:shadow-[0_8px_40px_-12px_rgba(59,130,246,0.25)] sm:p-8 ${
-        project.featured ? "md:col-span-2" : ""
-      }`}
-    >
+  const body = (
+    <>
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
@@ -88,6 +88,34 @@ export default function ProjectCard({ project }: { project: Project }) {
           </span>
         </span>
       </div>
+    </>
+  );
+
+  if (isInternal) {
+    return (
+      <MotionLink
+        href={project.url}
+        variants={variants}
+        whileHover={{ y: -4 }}
+        transition={{ type: "spring", stiffness: 300, damping: 24 }}
+        className={className}
+      >
+        {body}
+      </MotionLink>
+    );
+  }
+
+  return (
+    <motion.a
+      href={project.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      variants={variants}
+      whileHover={{ y: -4 }}
+      transition={{ type: "spring", stiffness: 300, damping: 24 }}
+      className={className}
+    >
+      {body}
     </motion.a>
   );
 }

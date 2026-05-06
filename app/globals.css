@@ -10,6 +10,9 @@
   --accent: #3b82f6;
   --accent-glow: rgba(59, 130, 246, 0.15);
   --border: rgba(255, 255, 255, 0.08);
+  --snake-food: #f59e0b;
+  --snake-food-glow: rgba(245, 158, 11, 0.5);
+  --snake-canvas-bg: #060912;
 }
 
 @theme inline {
